@@ -17,7 +17,7 @@ namespace Elevator.Model
         {
             if (isMove)
             {
-                return;
+                return; 
             }
             isMove = true;
             while (ChangedFloor.Count > 0)

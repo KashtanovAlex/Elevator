@@ -7,6 +7,8 @@ namespace Elevator.Controllers;
 [Route("[controller]")]
 public class InsideButtonController : ControllerBase
 {
+    protected static object _lock = new object();
+
     /// <summary>
     /// Вызов лифта с кнопок внутри
     /// </summary>
@@ -18,8 +20,10 @@ public class InsideButtonController : ControllerBase
         {
             return;
         }
-        Elevator.Model.ElevatorModel.ChangedFloor.Add(setting.currentFloor);
-        Elevator.Model.ElevatorModel.ChangedFloor.Sort();
+        lock (_lock) {
+            Elevator.Model.ElevatorModel.ChangedFloor.Add(setting.currentFloor);
+            Elevator.Model.ElevatorModel.ChangedFloor.Sort();
+        }
         Elevator.Model.ElevatorModel.MoveElevator(true);
     }
 }

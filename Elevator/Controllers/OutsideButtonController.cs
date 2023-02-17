@@ -7,6 +7,8 @@ namespace Elevator.Controllers;
 [Route("[controller]")]
 public class OutsideButtonController : ControllerBase
 {
+    protected static object _lock = new object();
+
     /// <summary>
     /// Вызов лифта с внешних кнопок
     /// </summary>
@@ -18,8 +20,11 @@ public class OutsideButtonController : ControllerBase
         {
             return;
         }
-        Elevator.Model.ElevatorModel.ChangedFloor.Add(setting.currentFloor);
-        Elevator.Model.ElevatorModel.ChangedFloor.Sort();
+        lock (_lock)
+        {
+            Elevator.Model.ElevatorModel.ChangedFloor.Add(setting.currentFloor);
+            Elevator.Model.ElevatorModel.ChangedFloor.Sort();
+        }
         Elevator.Model.ElevatorModel.MoveElevator(true);
     }
 }
