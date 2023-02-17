@@ -1,0 +1,33 @@
+a {
+  color: #0366d6;
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  color: black;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+  height: 200px;
+  width: 100%;
+  opacity: .8;
+  background-image: url(https://www.urbancapture.com/wp-content/uploads/yapb_cache/130209_1551_palace_of_justice_11th_floor_westerdokseiland_amsterdam_the_netherlands.6ktm51ws7qosgsoss4ggkwg8k.4q3apyb2j5es0kwo4g8sgkcwg.th.jpeg);
+}
+.insideButton {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 1px solid red;
+}
+
+#outer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

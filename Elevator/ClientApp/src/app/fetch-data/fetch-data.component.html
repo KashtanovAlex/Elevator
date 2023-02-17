@@ -1,0 +1,13 @@
+<h1>Асинхронные сообщения</h1>
+
+<p>Введите сообщения:</p>
+
+<input id="floorCountInput1" [(ngModel)]="messageText1"  placeholder="Сообщение 1" type="text">
+<button (click)="sendMessage1()"> Отправить</button>
+<input id="floorCountInput2" placeholder="Сообщение 2" type="text" [(ngModel)]="messageText2">
+<button (click)="sendMessage2()"> Отправить</button>
+<input id="floorCountInpu3" placeholder="Сообщение 3" type="text" [(ngModel)]="messageText3">
+<button (click)="sendMessage3()"> Отправить</button>
+
+<button (click)="getMessage()"> Получить текст</button>
+<p>{{messageServer}}</p>

@@ -1,0 +1,18 @@
+<h1>Лифт</h1>
+
+<p>Выберите количество этажей в доме:</p>
+
+<input id="floorCountInput" [(ngModel)]="floorCount" min="1" placeholder="0-1000" type="number" (change)="checkedFloorCount()">
+<div id="outer">
+    <h2 aria-live="polite">Лифт на <strong> {{elevatorPosition}} </strong> этаже</h2>
+</div>
+
+<button class="btn btn-primary" *ngFor="let buttonText of buttonOutSideTexts; let i = index;" (click)="selectOutSideFloor(i, this)">
+    {{buttonText}}
+</button>
+
+
+<p>Кнопки внутри лифта.</p>
+<button class="insideButton" *ngFor="let buttonInSideText of buttonInSideTexts; let j = index;" (click)="selectInSideFloor(j, this)">
+    {{buttonInSideText}}
+</button>
