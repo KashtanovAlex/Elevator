@@ -5,8 +5,7 @@ namespace Elevator.Model
     {
         private static int _floorCount;
         public static int FloorCount { get { return _floorCount; } set { if (value > 1) _floorCount = value; } }
-        public static int ElevatorSpeed = 2000;
-        public static int ElevatorPosition = 1;
+        public static int ElevatorPosition = 1;// Начальная позиция лифта
         public static List<int> ChangedFloor = new List<int>(); 
         private static bool isMove= false; 
 
@@ -14,7 +13,7 @@ namespace Elevator.Model
         /// Метод запускает движение лифта до тех пор пока не проедет все нужные этажи
         /// </summary>
         /// <param name="goUp">Выбор направления движения лифта в начале</param>
-        public static void MoveElevator(bool goUp)
+        public static async void MoveElevator(bool goUp)
         {
             if (isMove)
             {
@@ -31,7 +30,7 @@ namespace Elevator.Model
                     {
                         ChangedFloor.RemoveAt(ChangedFloor.FindIndex(x => x == ElevatorPosition));
                     }
-                    ElevatorPosition--;// Движение вниз
+                    ElevatorPosition = await ElevatorMotorModel.MoveDownAsync(ElevatorPosition);
                 }
                 else if (ElevatorPosition == ChangedFloor[indexFloor])
                 {
@@ -44,9 +43,8 @@ namespace Elevator.Model
                     {
                         ChangedFloor.RemoveAt(ChangedFloor.FindIndex(x => x == ElevatorPosition));
                     }
-                    ElevatorPosition++; // Движение вверх
+                    ElevatorPosition = await ElevatorMotorModel.MoveUpAsync(ElevatorPosition);
                 }
-                Thread.Sleep(ElevatorSpeed);
             }
             isMove = false;
         }
